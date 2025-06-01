@@ -112,25 +112,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Отправляем запрос
-  fetch("https://karrinan.rf.gd/send.php", {
-      method: "POST",
-      headers: {
-      "Content-Type": "application/x-www-form-urlencoded", // или application/json
-      },
-      body: formData
+ fetch("https://karrinan.rf.gd/send.php", {
+    method: "POST",
+    body: formData
+  })
+    .then(response => response.text())
+    .then(result => {
+      alert(result);
+      form.reset();
+      localStorage.removeItem("cart");
+      localStorage.removeItem("restaurant");
     })
-      .then(response => response.text())
-      .then(result => {
-        alert(result);
-        form.reset(); // очищаем форму
-        localStorage.removeItem("cart"); // очищаем корзину
-        localStorage.removeItem("restaurant");
-      })
-      .catch(error => {
-        alert("Ошибка при отправке заказа.");
-        console.error(error);
-      });
-  });
+    .catch(error => {
+      alert("Ошибка при отправке заказа.");
+      console.error(error);
+    });
 });
 
 //Форма для связи
