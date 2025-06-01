@@ -112,8 +112,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Отправляем запрос
-    fetch("send.php", {
+  fetch("https://karrinan.rf.gd/send.php", {
       method: "POST",
+      headers: {
+      "Content-Type": "application/x-www-form-urlencoded", // или application/json
+      },
       body: formData
     })
       .then(response => response.text())
