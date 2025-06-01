@@ -1,4 +1,8 @@
 <?php
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Headers: Content-Type");
+
 // Получаем данные из POST-запроса
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Данные клиента
