@@ -76,8 +76,8 @@
   }
 }
 
- @media (max-width: 400px) {
+ @media (max-width: 400 px) {
     .promo{
-         margin-top: 160px;
+         margin-top: 260 px;
 	}
 }
