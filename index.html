@@ -33,7 +33,7 @@
   <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title">Меню</h5>
-      <button type="button" class="btn-clo" data-bs-dismiss="offcanvas"></button>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Закрыть"></button>
     </div>
     <div class="offcanvas-body">
       <ul class="navbar-nav ">
@@ -44,8 +44,9 @@
     </div>
   </div>
 
+
   <!-- Кнопка корзины -->
-  <button id="cart-button" class="btn btn-danger position-fixed rounded " onclick="window.location.href='order.html';">
+  <button id="cart-button" class="btn btn-danger position-fixed rounded" aria-label="Корзина" onclick="window.location.href='order.html';">
     <img src="img/cart.svg" alt="cart_icon">
   </button>
 
@@ -65,58 +66,58 @@
       <h2 class="mb-4 text-right">Рестораны</h2>
       <div class="row g-4">
 
-        <div class="col-md-4" onclick="location.href='menu.html';" role="button">
+        <div class="col-md-4" onclick="location.href='pizzaRoma.html';" role="button">
           <div class="card h-100 shadow-sm">
-            <img src="img/banner4.jpg" class="card-img-top" alt="Ресторан">
+            <img src="img/пиццерия.jpg" class="card-img-top" alt="Ресторан 1">
             <div class="card-body">
               <h5 class="card-title">Pizza Roma</h5>
-              <p class="card-text">⭐ 4.8 • ⏱ 30–60 мин</p>
+              <p class="card-text">⭐ 4.8   ⏱ 30–60 мин</p>
             </div>
           </div>
         </div>
         <!-- Повторить 5 раз с другими названиями -->
-        <div class="col-md-4" onclick="location.href='menu.html';" role="button">
+        <div class="col-md-4" onclick="location.href='burgerTown.html';" role="button">
           <div class="card h-100 shadow-sm">
-            <img src="img/banner5.jpg" class="card-img-top" alt="Ресторан">
+            <img src="img/бургерная.jpg" class="card-img-top" alt="Ресторан 2">
             <div class="card-body">
-              <h5 class="card-title">Pasta Milano</h5>
-              <p class="card-text">⭐ 4.6 • ⏱ 60–120 мин</p>
+              <h5 class="card-title">Burger Town</h5>
+              <p class="card-text">⭐ 4.6   ⏱ 60–120 мин</p>
             </div>
           </div>
         </div>
-        <div class="col-md-4" onclick="location.href='menu.html';" role="button">
+        <div class="col-md-4" onclick="location.href='sushiMaster.html';" role="button">
           <div class="card h-100 shadow-sm">
-            <img src="img/banner1.jpg" class="card-img-top" alt="Ресторан">
+            <img src="img/японская.jpg" class="card-img-top" alt="Ресторан 3">
             <div class="card-body">
-              <h5 class="card-title">La Trattoria</h5>
-              <p class="card-text">⭐ 4.7 • ⏱ 25–60 мин</p>
+              <h5 class="card-title">Sushi Master</h5>
+              <p class="card-text">⭐ 4.7   ⏱ 25–60 мин</p>
             </div>
           </div>
         </div>
-        <div class="col-md-4" onclick="location.href='menu.html';" role="button">
+        <div class="col-md-4" onclick="location.href='sweetLife.html';" role="button">
           <div class="card h-100 shadow-sm">
-            <img src="img/banner3.jpg" class="card-img-top" alt="Ресторан">
+            <img src="img/десерты.png" class="card-img-top" alt="Ресторан 4">
             <div class="card-body">
-              <h5 class="card-title">Bella Napoli</h5>
-              <p class="card-text">⭐ 4.9 • ⏱ 20–60 мин</p>
+              <h5 class="card-title">Sweet Life</h5>
+              <p class="card-text">⭐ 4.9   ⏱ 20–60 мин</p>
             </div>
           </div>
         </div>
-        <div class="col-md-4" onclick="location.href='menu.html';" role="button">
+        <div class="col-md-4" onclick="location.href='greekPoint.html';" role="button">
           <div class="card h-100 shadow-sm">
-            <img src="img/banner6.jpg" class="card-img-top" alt="Ресторан">
+            <img src="img/греческая.png" class="card-img-top" alt="Ресторан 5">
             <div class="card-body">
-              <h5 class="card-title">Mamma Mia</h5>
-              <p class="card-text">⭐ 4.5 • ⏱ 60–120 мин</p>
+              <h5 class="card-title">Greek Point</h5>
+              <p class="card-text">⭐ 4.5   ⏱ 60–120 мин</p>
             </div>
           </div>
         </div>
-        <div class="col-md-4" onclick="location.href='menu.html';" role="button">
+        <div class="col-md-4" onclick="location.href='mexicanoLoco.html';" role="button">
           <div class="card h-100 shadow-sm">
-            <img src="img/banner2.jpg" class="card-img-top" alt="Ресторан">
+            <img src="img/мексиканская.jpg" class="card-img-top" alt="Ресторан 6">
             <div class="card-body">
-              <h5 class="card-title">Dolce Vita</h5>
-              <p class="card-text">⭐ 4.4 • ⏱ 40–50 мин</p>
+              <h5 class="card-title">Mexicano Loco</h5>
+              <p class="card-text">⭐ 4.4   ⏱ 40–50 мин</p>
             </div>
           </div>
         </div>
@@ -125,20 +126,20 @@
   </section>
 
   <!-- Акции -->
-  <section class="bg-light py-5" id="offers">
+  <section class=" py-5" id="offers">
     <div class="container">
       <h2 class="text-right mb-4">Акции</h2>
       <div class="row g-4">
         <div class="col-md-6">
           <img src="img/event1.jpg" class="card-img-top border rounded" alt="event1">
-          <div class="p-4 border rounded bg-white h-30 shadow-sm">
+          <div class="p-4 border rounded bg-white h-35 shadow-sm">
               <h4> Скидка 20% в День Рождения!</h4>
-              <p>Оформи заказ в свой День Рождения и получи скидку 20% на всё меню.</p>
+              <p>Оформи заказ в День Рождения и получи скидку 20%.</p>
           </div>
         </div>
         <div class="col-md-6">
           <img src="img/event2.jpg" class="card-img-top border rounded" alt="event2">
-          <div class="p-4 border rounded bg-white h-30 shadow-sm">
+          <div class="p-4 border rounded bg-white h-35 shadow-sm">
               <h4> Бесплатная доставка от 1000₽</h4>
               <p>Сделай заказ от 1000 рублей и мы доставим его бесплатно!</p>
           </div>
@@ -171,7 +172,7 @@
   <!-- Подвал -->
   <footer class="bg-dark text-white text-right py-3 mt-4">
     <div class="container">
-      &copy; 2025 Amore di casa. Все права защищены.
+      &copy; 2025 Amore Di Casa. Все права защищены.
     </div>
   </footer>
 
