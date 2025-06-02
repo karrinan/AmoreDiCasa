@@ -1,52 +1,117 @@
-
-// Корзина
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-let restaurant = localStorage.getItem("selectedRestaurant") || "Неизвестный ресторан";
-
-// Сохраняем корзину
-function saveCart() {
-  localStorage.setItem("cart", JSON.stringify(cart));
+// Получить все корзины из localStorage
+function getAllCarts() {
+  return JSON.parse(localStorage.getItem("multiCart")) || {};
 }
 
-// Добавить в корзину
+// Сохранить все корзины в localStorage
+function saveAllCarts(carts) {
+  localStorage.setItem("multiCart", JSON.stringify(carts));
+}
+
+// Получить выбранный ресторан из localStorage
+function getSelectedRestaurant() {
+  return localStorage.getItem("selectedRestaurant") || "Неизвестный ресторан";
+}
+
+// Установить выбранный ресторан в localStorage
+function setSelectedRestaurant(name) {
+  localStorage.setItem("selectedRestaurant", name);
+}
+
+// Получить корзину для текущего ресторана
+function getCurrentCart() {
+  const carts = getAllCarts();
+  const restaurant = getSelectedRestaurant();
+  return carts[restaurant] || [];
+}
+
+// Сохранить корзину для текущего ресторана
+function saveCurrentCart(cart) {
+  const carts = getAllCarts();
+  const restaurant = getSelectedRestaurant();
+  carts[restaurant] = cart;
+  saveAllCarts(carts);
+}
+
+// Добавить товар в корзину указанного ресторана
 function addToCart(name, price, restaurantName) {
-  restaurant = restaurantName;
-  localStorage.setItem("selectedRestaurant", restaurantName);
+  setSelectedRestaurant(restaurantName);
+  const carts = getAllCarts();
+
+  if (!carts[restaurantName]) {
+    carts[restaurantName] = [];
+  }
+
+  const cart = carts[restaurantName];
   const existing = cart.find(item => item.name === name);
   if (existing) {
     existing.quantity += 1;
   } else {
     cart.push({ name, price, quantity: 1 });
   }
-  saveCart();
+
+  saveAllCarts(carts);
+  renderCartSwitcher();
+  renderCart(restaurantName);
 }
 
-// Удалить позицию
+// Удалить товар из корзины текущего ресторана
 function removeFromCart(name) {
+  let cart = getCurrentCart();
   cart = cart.filter(item => item.name !== name);
-  saveCart();
-  renderCart();
+  saveCurrentCart(cart);
+  renderCartSwitcher();
+  renderCart(getSelectedRestaurant());
 }
 
-// Изменить количество
+// Изменить количество товара в корзине текущего ресторана
 function changeQuantity(name, delta) {
+  const cart = getCurrentCart();
   const item = cart.find(i => i.name === name);
   if (!item) return;
   item.quantity += delta;
   if (item.quantity < 1) item.quantity = 1;
-  saveCart();
-  renderCart();
+  saveCurrentCart(cart);
+  renderCartSwitcher();
+  renderCart(getSelectedRestaurant());
 }
 
-// Очистить корзину
+// Очистить корзину текущего ресторана
 function clearCart() {
-    cart = [];
-    localStorage.removeItem("cart");
-    renderCart();
+  const carts = getAllCarts();
+  const restaurant = getSelectedRestaurant();
+  delete carts[restaurant];
+  saveAllCarts(carts);
+  renderCartSwitcher();
+  renderCart(restaurant);
 }
 
-// Отображение корзины
-function renderCart() {
+// Отрисовать переключатель между корзинами ресторанов
+function renderCartSwitcher() {
+  const carts = getAllCarts();
+  const container = document.getElementById("cart-switcher");
+  if (!container) return;
+
+  container.innerHTML = "";
+  for (const restaurant in carts) {
+    const btn = document.createElement("button");
+    btn.textContent = restaurant + ` (${carts[restaurant].reduce((acc, i) => acc + i.quantity, 0)})`;
+    btn.className = restaurant === getSelectedRestaurant() ? "active btn btn-primary me-2" : "btn btn-outline-primary me-2";
+    btn.onclick = () => {
+      setSelectedRestaurant(restaurant);
+      renderCartSwitcher();
+      renderCart(restaurant);
+    };
+    container.appendChild(btn);
+  }
+  if (Object.keys(carts).length === 0) {
+    container.textContent = "Корзина пуста";
+  }
+}
+
+// Отрисовать корзину выбранного ресторана
+function renderCart(restaurant) {
+  const cart = getAllCarts()[restaurant] || [];
   const cartTable = document.getElementById("cart-items");
   const totalSpan = document.getElementById("total-price");
   const restName = document.getElementById("restaurant-name");
@@ -87,67 +152,76 @@ function renderCart() {
   }
 }
 
-// Отображение корзины при загрузке order.html
+// Инициализация при загрузке страницы order.html
 if (window.location.pathname.includes("order.html")) {
-  document.addEventListener("DOMContentLoaded", renderCart);
+  document.addEventListener("DOMContentLoaded", () => {
+    renderCartSwitcher();
+    const restaurant = getSelectedRestaurant();
+    renderCart(restaurant);
+  });
 }
 
-// Форма для оформления
+// Обработка отправки формы оформления заказа
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("orderForm");
+  if (!form) return;
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    // Собираем данные формы
-    const formData = new FormData(form);
+    const carts = getAllCarts();
+    const restaurant = getSelectedRestaurant();
+    const cart = carts[restaurant];
 
-    // Добавим корзину из localStorage, если нужно
-    const cartData = localStorage.getItem("cart");
-    const restaurant = localStorage.getItem("selectedRestaurant");
-
-    if (!cartData || !restaurant) {
+    if (!cart || cart.length === 0) {
       alert("Корзина пуста!");
       return;
     }
 
-    // Отправляем запрос
- fetch("https://karrinan.rf.gd/send.php", {
-    method: "POST",
-    body: formData
-  })
-    .then(response => response.text())
-    .then(result => {
-      alert(result);
-      form.reset();
-      localStorage.removeItem("cart");
-      localStorage.removeItem("restaurant");
+    const formData = new FormData(form);
+    // Можно добавить данные корзины в форму, если нужно
+    formData.append("cartData", JSON.stringify({ restaurant, cart }));
+
+    fetch("send.php", {
+      method: "POST",
+      body: formData
     })
-    .catch(error => {
-      alert("Ошибка при отправке заказа.");
-      console.error(error);
-    });
+      .then(response => response.text())
+      .then(result => {
+        alert(result);
+        form.reset();
+        // Очистка корзины текущего ресторана после заказа
+        const allCarts = getAllCarts();
+        delete allCarts[restaurant];
+        saveAllCarts(allCarts);
+        renderCartSwitcher();
+        renderCart(getSelectedRestaurant());
+      })
+      .catch(error => {
+        alert("Ошибка при отправке заказа.");
+        console.error(error);
+      });
+  });
 });
 
-//Форма для связи
+// Обработка отправки формы обратной связи
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("contact-form");
+  if (!form) return;
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    // Собираем данные формы
     const formData = new FormData(form);
 
-    // Отправляем запрос
     fetch("contact.php", {
       method: "POST",
       body: formData
     })
       .then(response => response.text())
       .then(result => {
-        alert(result); // Показываем результат в окне
-        form.reset(); // очищаем форму
+        alert(result);
+        form.reset();
       })
       .catch(error => {
         alert("Ошибка при отправке сообщения.");
@@ -155,4 +229,3 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   });
 });
-
