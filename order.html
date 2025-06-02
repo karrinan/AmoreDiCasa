@@ -33,7 +33,7 @@
   <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title">Меню</h5>
-      <button type="button" class="btn-clo" data-bs-dismiss="offcanvas"></button>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Закрыть"></button>
     </div>
     <div class="offcanvas-body">
       <ul class="navbar-nav ">
@@ -71,7 +71,7 @@
     </div>
 
     <!-- Форма для оформления заказа -->
-    <form id="orderForm" action="https://karrinan.rf.gd/send.php" method="POST" class="bg-light p-4 rounded shadow-sm">
+    <form id="orderForm" method="POST" class="bg-light p-4 rounded shadow-sm">
       <h4 class="mb-3">Введите данные для доставки</h4>
       <div class="mb-3">
         <label for="name" class="form-label">Имя</label>
@@ -92,8 +92,8 @@
       <div class="mb-3">
         <label for="payment" class="form-label">Способ оплаты</label>
         <select class="form-select" id="payment" name="payment">
-          <option value="card">Картой при получении</option>
-          <option value="cash">Наличными при получении</option>
+          <option value="Картой при получении">Картой при получении</option>
+          <option value="Наличными при получении">Наличными при получении</option>
         </select>
       </div>
       <input type="hidden" name="cartData" id="cartDataInput">
