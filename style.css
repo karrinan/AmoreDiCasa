@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 .promo {
 	font-family: "Montserrat";
-	transition: all 0.5s ease;
-	box-shadow: 0px 7px 12px rgba(158, 158, 163, 0.1);
+	transition: all 0.5 s ease;
+	box-shadow: 0 px 7 px 12 px rgba(158, 158, 163, 0.1);
 	background: #fffdf4 url(img/promo-img.png) no-repeat top -100px right -177px/824px;
 	background-size: contain; 
-  	max-width: 1300px; 
-  	width: 100%; 
+  	max-width: 1300 px; 
+  	width: 100 %; 
   	margin: 0 auto; 
-	border-radius: 30px;
-    margin-top: 130px;
-    padding: 50px 40px;
+	border-radius: 30 px;
+     	margin-top: 130 px;
+        padding: 50 px 40 px;
 }
 .promo-title {
 	font-family: "Montserrat";
@@ -32,46 +32,46 @@
 	color: #302C34;
 }
 #cart-button {
-    bottom: 20px;      
-    right: 20px;       
-    z-index: 1050;     
-    padding: 15px;    
-    font-size: 24px;   
-    border: none;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        bottom: 20 px;      
+        right: 20 px;       
+        z-index: 1050;     
+        padding: 15 px;    
+        font-size: 24 px;   
+        border: none;
+        box-shadow: 0 4 px 10 px rgba(0, 0, 0, 0.2);
 }
 #cart-button:hover {
-background-color: #C92D1F;
-cursor: pointer;
+        background-color: #C92D1F;
+	cursor: pointer;
 }
 .custom-red {
-color: #C92D1F !important; 
+	color: #C92D1F !important; 
 }
 .custom-red:hover {
-text-align: center ;
-transition: all 0.1s ease !important;
-width: 95px !important;
-border-bottom: 3px dotted #C92D1F !important;
+	text-align: center ;
+	transition: all 0.1s ease !important;
+	width: 95px !important;
+	border-bottom: 3px dotted #C92D1F !important;
 }
 .navbar-toggler{
-outline: none !important;
-box-shadow: none !important;
+	outline: none !important;
+	box-shadow: none !important;
 }
 .btn{
-outline: none !important;
-box-shadow: none !important;
+	outline: none !important;
+	box-shadow: none !important;
 }
 
- @media (min-width: 1200px) {
+ @media (min-width: 1200 px) {
     .form-container{
-        max-width: 600px;
-		margin: 0 auto;
-	}
+        max-width: 600 px;
+	margin: 0 auto;
+    }
 }
 
-@media (max-width: 991.98px) {
+@media (max-width: 991.98 px) {
   .offcanvas-start {
-    width: 33.3333% !important; 
+    width: 33.3333 % !important; 
     max-width: none;
   }
 }
