@@ -75,3 +75,9 @@
     max-width: none;
   }
 }
+
+ @media (max-width: 400px) {
+    .promo{
+         margin-top: 160px;
+	}
+}
