@@ -24,7 +24,7 @@
 .promo-text {
 	font-family: "Montserrat";
 	max-width: 538px;
-	width: 50%;
+	width: 70%;
 	font-style: normal;
 	font-weight: normal;
 	font-size: 20px;
@@ -76,8 +76,3 @@
   }
 }
 
- @media (max-width: 300 px) {
-    .promo{
-         margin-top: 260 px !important;
-	}
-}
