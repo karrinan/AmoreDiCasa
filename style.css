@@ -32,8 +32,8 @@
 	color: #302C34;
 }
 #cart-button {
-    bottom: 2 px;      
-    right: 2 px;       
+    bottom: 2px;      
+    right: 2px;       
     z-index: 1050;     
     padding: 15px;    
     font-size: 24px;   
@@ -41,32 +41,32 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 #cart-button:hover {
-background-color: #C92D1F;
-cursor: pointer;
+	background-color: #C92D1F;
+	cursor: pointer;
 }
 .custom-red {
-color: #C92D1F !important; 
+	color: #C92D1F !important; 
 }
 .custom-red:hover {
-text-align: center ;
-transition: all 0.1s ease !important;
-width: 95px !important;
-border-bottom: 3px dotted #C92D1F !important;
+	text-align: center ;
+	transition: all 0.1s ease !important;
+	width: 95px !important;
+	border-bottom: 3px dotted #C92D1F !important;
 }
 .navbar-toggler{
-outline: none !important;
-box-shadow: none !important;
+	outline: none !important;
+	box-shadow: none !important;
 }
 .btn{
-outline: none !important;
-box-shadow: none !important;
+	outline: none !important;
+	box-shadow: none !important;
 }
 
  @media (min-width: 1200px) {
     .form-container{
         max-width: 600px;
-		margin: 0 auto;
-	}
+	margin: 0 auto;
+    }
 }
 
 @media (max-width: 991.98px) {
