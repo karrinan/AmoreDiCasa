@@ -78,6 +78,6 @@
 
  @media (max-width: 400 px) {
     .promo{
-         margin-top: 260 px;
+         padding-top: 260 px;
 	}
 }
