@@ -1,19 +1,17 @@
-// Получить все корзины из localStorage
-function getAllCarts() {
-    return JSON.parse(localStorage.getItem("multiCart")) || {};
-}
-
-// Сохранить все корзины в localStorage
+// Сохранить все корзины
 function saveAllCarts(carts) {
     localStorage.setItem("multiCart", JSON.stringify(carts));
 }
 
-// Получить выбранный ресторан из localStorage
+// Получить все корзины
+function getAllCarts() {
+    return JSON.parse(localStorage.getItem("multiCart")) || {};
+}
+
+// Получить и установать выбранный ресторан 
 function getSelectedRestaurant() {
     return localStorage.getItem("selectedRestaurant") || "Неизвестный ресторан";
 }
-
-// Установить выбранный ресторан в localStorage
 function setSelectedRestaurant(name) {
     localStorage.setItem("selectedRestaurant", name);
 }
@@ -33,7 +31,7 @@ function saveCurrentCart(cart) {
     saveAllCarts(carts);
 }
 
-// Добавить товар в корзину указанного ресторана
+// Добавить товар в корзину текущего ресторана
 function addToCart(name, price, restaurantName) {
     setSelectedRestaurant(restaurantName);
     const carts = getAllCarts();
@@ -113,7 +111,7 @@ function renderCartSwitcher() {
     }
 }
 
-// Отрисовать корзину выбранного ресторана
+// Отобразить корзину выбранного ресторана
 function renderCart(restaurant) {
     const cart = getAllCarts()[restaurant] || [];
     const cartTable = document.getElementById("cart-items");
@@ -235,3 +233,4 @@ document.addEventListener("DOMContentLoaded", function() {
             });
     });
 });
+
